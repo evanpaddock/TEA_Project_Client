@@ -21,8 +21,7 @@
           <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav me-auto">
               <li class="nav-item">
-                <a class="nav-link active" href="./home.html">Home
-                  <span class="visually-hidden">(current)</span>
+                <a class="nav-link" href="./home.html">Home
                 </a>
               </li>
               <li class="nav-item">
@@ -41,14 +40,58 @@
           <!-- placing this in this div keeps "login" on the right side of the screen regardless of size -->
           <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="./login.html">Login</a>
+                    <a class="nav-link active" href="./login.html">Login</a>
+                    <span class="visually-hidden">(current)</span>
                 </li>
           </ul>
         </div>
       </nav>
-      <div class="welcome">
-        <h1>Welcome!</h1>
+      <div class="logincontainer">
+        <div class="form" >
+            <h2>Register</h2>
+            <form id = "registerform">
+                <div class="form-group">
+                    <label class="form-label mt-4">Please create an account here</label>
+                    <div class="form-floating mb-3">
+                      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                      <label for="floatingInput">Email address</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                      <label for="floatingPassword">Password</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="Password">
+                        <label for="floatingPassword">Confirm Password</label>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-lg btn-primary" type="button">Register</button>
+                          </div>
+                      </div>
+                  </div>
+            </form>
+        </div>
+        <div class="form">
+            <h2>Login</h2>
+            <form id="loginform">
+                <div class="form-group">
+                    <label class="form-label mt-4">Login with an existing account here</label>
+                    <div class="form-floating mb-3">
+                      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                      <label for="floatingInput">Email address</label>
+                    </div>
+                    <div class="form-floating">
+                      <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                      <label for="floatingPassword">Password</label>
+                      <div class="d-grid gap-2">
+                        <button class="btn btn-lg btn-primary" type="button">Login</button>
+                      </div>
+                    </div>
+                  </div>
+            </form>
+        </div>
+        
       </div>
+
       <!-- Footer Bar -->
       <div class="container fixed-bottom">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
