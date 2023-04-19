@@ -27,3 +27,90 @@
 .d-grid{
     margin-top: 10px;
 }
+
+/* Styles for the forms and container */
+.formcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+    margin-bottom: 20px;
+    padding: 50px;
+  }
+  
+  .form {
+    width: calc(33.33% - 20px);
+    margin-right: 20px;
+  }
+  
+  .form:last-child {
+    margin-right: 0;
+  }
+  
+  /* Styles for the labels and inputs */
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input, select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Styles for the buttons */
+  button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #0d6efd;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    opacity: 0.8
+  }
+
+  form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  label {
+    margin-right: 8px;
+  }
+  
+  select {
+    margin-right: 16px;
+  }
+  
+  .button {
+    display: inline-block;
+    padding: 8px 16px;
+    border: none;
+    background-color: #0d6efd;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    opacity: 0.8;
+  }
+
+  img {
+    width: 200px;
+    height: 150px;
+    margin-top: 16px;
+    padding: 45px;
+  }
+  
+  
