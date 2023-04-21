@@ -113,4 +113,30 @@
     padding: 45px;
   }
   
+  .car-table {
+    margin: 0 auto;
+    width: 80%; /* or a fixed value, such as "600px" */
+  }  
+  .car-table thead {
+    background-color: #f2f2f2;
+  }
+  .car-table tbody tr {
+    background-color: #fff;
+  }
+  .car-table tbody tr {
+    background-color: #fff;
+  }
+  .car-table th {
+    text-align: left;
+    font-weight: bold;
+    padding: 8px;
+  }
+  .car-table td {
+    padding: 8px;
+  }
+  .car-table td, .car-table th {
+    border: 1px solid #0d6efd;
+    padding: 8px;
+  }
+  
   
