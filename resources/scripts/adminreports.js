@@ -31,7 +31,7 @@ function CreateFirstReport(){
         // }
       }
     });
-    // Fetching data from mySQL
+    // Fetching data from mySQL, will update when time to connect to API
     fetch('insert link here')
     .then(response => response.json())
     .then(data =>{
