@@ -9,8 +9,9 @@ function handleLogin(){
     form.addEventListener('submit', async function(e){
         e.preventDefault();
 
-        const username = document.getElementById("loginUsername").value
+        const username = document.getElementById("loginUserName").value
         const password = document.getElementById("loginPassword").value
+
 
         const loginInfo = {username, password}
 
@@ -18,14 +19,14 @@ function handleLogin(){
             return response.json();
         }).then(async function(data){
             const foundUser = data.find(
-                (data) => data.userName.toLowerCase() === loginInfo.username.toLowerCase() &&
-                data.password.toLowerCase() === loginInfo.password.toLowerCase()
+                (data) => data.userName === loginInfo.username &&
+                data.password === loginInfo.password
             )
 
             try{
-                let foundID = foundUser.user_ID;
+                let foundUserName = foundUser.userName;
 
-                console.log(foundID)
+                alert(`Welcome ${foundUserName}!`)
             }catch{
                 alert("A user with that name and password are not found.\n\nPlease try again or register.")
                 document.getElementById("loginUsername").value = "";
@@ -37,7 +38,7 @@ function handleLogin(){
 }
 
 function handleRegister(){
-    let form = document.getElementById("loginform");
+    let form = document.getElementById("registerform");
 
     form.addEventListener('submit', async function(e){
         e.preventDefault();
@@ -48,7 +49,7 @@ function handleRegister(){
         const userEmail = document.getElementById("registerEmail").value
         const userState = document.getElementById("registerState").value
         const password = document.getElementById("registerPassword").value;
-        const confirmpassword = document.getElementById("confirmpassword").value
+        const confirmpassword = document.getElementById("confirmPassword").value
 
         if(password != confirmpassword){
             alert("Passwords do not match\n\n Please try again")
@@ -56,28 +57,33 @@ function handleRegister(){
             document.getElementById("registerPassword").value = "";
             document.getElementById("confirmpassword").value = "";
         }else{
-            const joinDate = new Date().toLocaleDateString();
-            await fetch("http://localhost:5134/api/Songs", {
-                // Adding method type
-                method: "POST",
+            try{
+                const joinDate = new Date().toLocaleDateString();
+                await fetch(url + "User", {
+                    // Adding method type
+                    method: "POST",
+                    
+                    // Adding body or contents to send
+                    body: JSON.stringify({
+                        userName: username,
+                        password: password,
+                        userEmail: userEmail,
+                        firstName: firstName,
+                        lastName: lastName,
+                        dateJoined: joinDate,
+                        state: userState,
+                        role_ID: 2
+                    }),
                 
-                // Adding body or contents to send
-                body: JSON.stringify({
-                    userName: username,
-                    password: password,
-                    userEmail: userEmail,
-                    firstName: firstName,
-                    lastName: lastName,
-                    dateJoined: joinDate,
-                    state: userState,
-                    role_ID: 0
-                }),
-            
-                // Adding headers to the request
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8"
-                }
-            })
+                    // Adding headers to the request
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    }
+                })
+                console.log("Success!")
+            }catch{
+                console.log("Fail!")
+            }
         }
     })
 }
