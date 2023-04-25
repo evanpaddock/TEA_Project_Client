@@ -6,7 +6,7 @@ function handleOnLoad(){
 }
 
 const getData = function() {
-    fetch(url)
+    fetch(url + "Car")
     .then(function (response){
         return response.json()
     })
@@ -14,7 +14,6 @@ const getData = function() {
         createTable(data)
     })
 }
-getData()
 
 const data = []
 
