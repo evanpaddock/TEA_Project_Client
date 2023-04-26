@@ -1,0 +1,7 @@
+body {
+    height: 950px; /* You must set a specified height */
+}
+#main-text{
+    height: 40%;
+    width: 95%;
+}
