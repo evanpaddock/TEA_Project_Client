@@ -1,3 +1,7 @@
+const url = `https://localhost:7106/api/`
+const data = []
+
+
 function handleOnLoad(){
     CreateFirstReport()
     CreateSecondReport()
@@ -5,14 +9,29 @@ function handleOnLoad(){
 }
 
 function CreateFirstReport(){
+  const getData = function() {
+    fetch(url + "Car")
+    .then(function (response){
+        return response.json()
+    })
+    .then(function (data) {
+      //formatting data for use with chart.js
+      const labels = []
+      const values = []
+      data.forEach(function(item){
+        labels.push(item.label)
+        values.push(item.value)
+      })
+    })
+  
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: [],
         datasets: [{
-          label: 'Sales',
-          data: [],
+          label: 'Most Popular Car by Search',
+          data: values,
           backgroundColor: 'rgba(255, 99, 132, 0.2)',
           borderColor: 'rgba(255, 99, 132, 1)',
           borderWidth: 1
@@ -43,6 +62,7 @@ function CreateFirstReport(){
     .catch(error => {
         console.error('Error fetching sales data', error)
     })
+}
 }
 
 function CreateSecondReport(){
