@@ -1,0 +1,13 @@
+body {
+    background-image: url("../images/TEA_Home_Background.png");
+    background-repeat: repeat-none;
+    height: 950px; /* You must set a specified height */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    opacity: .94;
+}
+#main-text{
+    height: 90%;
+    width: 95%;
+}

@@ -1,0 +1,13 @@
+.logincontainer{
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+    margin-left: 125px;
+    margin-right: 125px;
+    margin-top: 30px; 
+}
+body{
+    padding-bottom: 100px;
+}
