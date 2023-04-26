@@ -51,102 +51,97 @@
         <h1>Car Calculator</h1>
       </div>
       <!--Drop down menu1 start-->
-      <form>
-        <div class="form-group">
-          <label for="make">Make:</label>
-          <select id="make" name="make">
-            <option value="">-- Select Make --</option>
-            <option value="Toyota">Toyota</option>
-            <option value="Honda">Honda</option>
-            <option value="Ford">Ford</option>
-          </select>
-        </div>
+      <div style="display:inline-block">
+        <form>
+          <div class="form-group" col-md-6>
+            <label for="make">Make:</label>
+            <select id="make" name="make" required>
+              <option value="">-- Select Make --</option>
+              <option value="Toyota">Toyota</option>
+              <option value="Honda">Honda</option>
+              <option value="Ford">Ford</option>
+            </select>
+          </div>
       
-        <div class="form-group">
-          <label for="model">Model:</label>
-          <select id="model" name="model">
-            <option value="">-- Select Model --</option>
-          </select>
-        </div>
+          <div class="form-group" col-md-6>
+            <label for="model">Model:</label>
+            <select id="model" name="model" required>
+              <option value="">-- Select Model --</option>
+            </select>
+          </div>
       
-        <div class="form-group">
-          <label for="year">Year:</label>
-          <select id="year" name="year">
-            <option value="">-- Select Year --</option>
-            <option value="2022">2022</option>
-            <option value="2021">2021</option>
-            <option value="2020">2020</option>
-          </select>
-        </div>
+          <div class="form-group" col-md-6>
+            <label for="year">Year:</label>
+            <select id="year" name="year" required>
+              <option value="">-- Select Year --</option>
+              <option value="2022">2022</option>
+              <option value="2021">2021</option>
+              <option value="2020">2020</option>
+            </select>
+          </div>
       
-        <button type="button" onclick="addRow()">Submit</button>
-      </form>
+          <button type="button" onclick="addRow()">Submit</button>
+        </form>
+        <table id="carTable">
+          <thead>
+            <tr>
+              <th>Make</th>
+              <th>Model</th>
+              <th>Year</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
       
-      <table id="carTable">
-        <thead>
-          <tr>
-            <th>Make</th>
-            <th>Model</th>
-            <th>Year</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
+      <div style="display:inline-block">
+        <form>
+          <div class="form-group" col-md-6>
+            <label for="make2">Make:</label>
+            <select id="make2" name="make2" required>
+              <option value="">-- Select Make --</option>
+              <option value="Toyota">Toyota</option>
+              <option value="Honda">Honda</option>
+              <option value="Ford">Ford</option>
+            </select>
+          </div>
       
-      <!--Drop dwon 2-->
-      <form>
-        <div class="form-group">
-          <label for="make">Make:</label>
-          <select id="make" name="make">
-            <option value="">-- Select Make --</option>
-            <option value="Toyota">Toyota</option>
-            <option value="Honda">Honda</option>
-            <option value="Ford">Ford</option>
-          </select>
-        </div>
+          <div class="form-group" col-md-6>
+            <label for="model2">Model:</label>
+            <select id="model2" name="model2" required>
+              <option value="">-- Select Model --</option>
+            </select>
+          </div>
       
-        <div class="form-group">
-          <label for="model">Model:</label>
-          <select id="model" name="model">
-            <option value="">-- Select Model --</option>
-          </select>
-        </div>
+          <div class="form-group" col-md-6>
+            <label for="year2">Year:</label>
+            <select id="year2" name="year2" required>
+              <option value="">-- Select Year --</option>
+              <option value="2022">2022</option>
+              <option value="2021">2021</option>
+              <option value="2020">2020</option>
+            </select>
+          </div>
       
-        <div class="form-group">
-          <label for="year">Year:</label>
-          <select id="year" name="year">
-            <option value="">-- Select Year --</option>
-            <option value="2022">2022</option>
-            <option value="2021">2021</option>
-            <option value="2020">2020</option>
-          </select>
-        </div>
+          <button type="button" onclick="addRowTable2()">Submit</button>
+        </form>
+        <table id="carTable2">
+          <thead>
+            <tr>
+              <th>Make</th>
+              <th>Model</th>
+              <th>Year</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
       
-        <button type="button" onclick="addRow()">Submit</button>
-      </form>
-      
-      <table id="carTable">
-        <thead>
-          <tr>
-            <th>Make</th>
-            <th>Model</th>
-            <th>Year</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
      
 
-              
-
-          
     </div>
-
-   
-
-
       <!-- Footer Bar -->
       <div class="container fixed-bottom">
         <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
