@@ -1,24 +1,22 @@
+const url = `https://localhost:7106/api/`
 
 function handleOnLoad(){
-    createTable(data)
+    getData()
+    //createTable()
 }
 
-// const getData = function() {
-//     fetch(url)
-//     .then(function (response){
-//         return response.json()
-//     })
-//     .then(function (data) {
-//         createTable(data)
-//     })
-// }
-// getData()
+const getData = function() {
+    fetch(url + "Car")
+    .then(function (response){
+        return response.json()
+    })
+    .then(function (data) {
+        createTable(data)
+    })
+}
 
-const data = [
-    {id: 0, make: "Ford", model: "Mustang", year: 2019, deleted: false},
-    {id: 1, make: "Tesla", model: "Model S", year: 2020, deleted: false },
-    {id: 2, make: "Chevrolet", model: "Corvette", year: 2021, deleted: false },// New vehicle added
-  ];
+const data = []
+
 const tableHtml = createTable(data);
 document.getElementById("table-container").innerHTML = tableHtml;
 
@@ -28,9 +26,7 @@ addCarBtn.addEventListener("click", () => {
   const make = prompt("Enter car make:");
   const model = prompt("Enter car model:");
   const year = parseInt(prompt("Enter car year:"));
-  data.push({ make, model, year });
-  const tableHtml = createTable(data);
-  document.getElementById("table-container").innerHTML = tableHtml;
+  
 });
 
 
@@ -39,29 +35,39 @@ addCarBtn.addEventListener("click", () => {
         <table class="table table-hover">
         <thead>
             <tr>
-            <th scope="col">Dark</th>
+            <th scope="col">ID</th>
             <th scope="col">Make</th>
             <th scope="col">Model</th>
             <th scope="col">Year</th>
+            <th scope="col">Trim</th>
+            <th scope="col">Gas Mileage</th>
+            <th scope="col">Tank Size</th>
+            <th scope="col">Fuel Type</th>
+            <th scope="col">Horse Power</th>
+            <th scope="col">Torque</th>
+            <th scope="col">Transmission</th>
             <th scope="col"></th>
             <th scope="col"></th>
             </tr>
         </thead>
         <tbody>
     `;
-    data.forEach((item, id) => {
-        if(data[id].deleted != true){
+    data.forEach((car) => {
+      console.log(car)
+        if(car.deleted != true){
+          console.log("inside if")
         tableHtml += `<tr class="table-dark">
-        <td>${id + 1}</td>
-        <td>${item.make}</td>
-        <td>${item.model}</td>
-        <td>${item.year}</td>
-        <td>
-            <button id="edit-car-btn" class="btn btn-secondary" data-index="${id}">Edit</button>
-          </td>
-        <td>
-            <button id="delete-car-btn" class="btn btn-danger" data-index="${id}">Delete</button>
-        </td>
+        <td>${car.id}</td>
+        <td>${car.make}</td>
+        <td>${car.model}</td>
+        <td>${car.year}</td>
+        <td>${car.trim}</td>
+        <td>${car.Gas_Mileage}</td>
+        <td>${car.Tank_Size}</td>
+        <td>${car.Fuel_Type}</td>
+        <td>${car.HorsePower}</td>
+        <td>${car.Torque}</td>
+        <td>${car.Transmission}</td>
       </tr>
     `;
       }    
@@ -71,7 +77,5 @@ addCarBtn.addEventListener("click", () => {
             </tbody>
         </table>
         `;
-  
-  
     return tableHtml;
   }
