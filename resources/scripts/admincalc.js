@@ -5,6 +5,7 @@ const data = []
 
 function handleOnLoad(){
     getData()
+    addCar()
 }
 
 const getData = function() {
@@ -21,15 +22,53 @@ const getData = function() {
 
 
 
-
+function addCar(){
 const addCarBtn = document.getElementById("add-car-btn");
-addCarBtn.addEventListener("click", () => {
-  const make = prompt("Enter car make:");
-  const model = prompt("Enter car model:");
-  const year = parseInt(prompt("Enter car year:"));
+addCarBtn.addEventListener("click", async function(e) {
+  e.preventDefault()
+      
+      const make = prompt("Enter new car make:")
+      const model = prompt("Enter new car model:")
+      const year = prompt("Enter new car year:")
+      const trim = prompt("Enter new car trim:")
+      const gas_Mileage = prompt("Enter new Gas Mileage:")
+      const tank_Size = prompt("Enter new Tank Size:")
+      const fuel_Type = prompt("Enter new Fuel Type:")
+      const horsePower = prompt("Enter new Horsepower:")
+      const torque = prompt("Enter new Torque:")
+      const transmission = prompt("Enter new Transmission:")
+      try{
+        await fetch(`${url}Car`, {
+          // Adding method type
+          method: "POST",
+          
+          // Adding body or contents to send
+          body: JSON.stringify({
+              
+              make : make,
+              model: model,
+              year: year,
+              trim: trim,
+              gas_Mileage: gas_Mileage,
+              tank_Size: tank_Size,
+              fuel_type: fuel_Type,
+              horsePower: horsePower,
+              torque: torque,
+              transmission: transmission
+          }),
+      
+          // Adding headers to the request
+          headers: {
+              "Content-type": "application/json; charset=UTF-8"
+          }
+      })
+      console.log("Success!")
+      }catch{
+      console.log("Fail!")
+    }
   
 });
-
+}
 
   function createTable(data){
     let tableHtml = `
@@ -69,8 +108,8 @@ addCarBtn.addEventListener("click", () => {
         <td>${car.horsePower}</td>
         <td>${car.torque}</td>
         <td>${car.transmission}</td>
-        <div><td><button id="adminedit-${car.carID}" type="submit" class="btn btn-primary">Edit</button></td></div>
-        <td><button id="admindelete" type="submit" class="btn btn-danger">Delete</button></td>
+        <div><td><button onClick="handleEdit(${car.carID})" type="submit" class="btn btn-primary">Edit</button></td></div>
+        <div><td><button onClick="handleDelete(${car.carID})" type="submit" class="btn btn-danger">Delete</button></td></div>
 
       </tr>
     `;
@@ -86,15 +125,9 @@ addCarBtn.addEventListener("click", () => {
   }
 
   
-  function handleEdit(carID){
-    let form = document.getElementById("adminedit")
+  async function handleEdit(carID){
     console.log("inside edit")
-    console.log(carID)
-    
-    form.addEventListener("submit", async function(e){
-      e.preventDefault()
       
-      const carIDupdated = carID
       const make = prompt("Enter new car make:")
       const model = prompt("Enter new car model:")
       const year = prompt("Enter new car year:")
@@ -106,14 +139,14 @@ addCarBtn.addEventListener("click", () => {
       const torque = prompt("Enter new Torque:")
       const transmission = prompt("Enter new Transmission:")
       try{
-        await fetch(url + "Car", {
+        await fetch(`${url}Car`, {
           // Adding method type
           method: "PUT",
           
           // Adding body or contents to send
           body: JSON.stringify({
               
-              carID: carIDupdated,
+              carID: carID,
               make : make,
               model: model,
               year: year,
@@ -135,5 +168,32 @@ addCarBtn.addEventListener("click", () => {
       }catch{
       console.log("Fail!")
     }
-  })
-}
+  }
+
+  async function handleDelete(carID){
+    console.log("inside delete")
+      
+      const deleted = true
+      try{
+        alert("This car is now deleted")
+        await fetch(`${url}Car`, {
+          // Adding method type
+          method: "PUT",
+          
+          // Adding body or contents to send
+          body: JSON.stringify({
+              
+            carID: carID,  
+            deleted: deleted
+          }),
+      
+          // Adding headers to the request
+          headers: {
+              "Content-type": "application/json; charset=UTF-8"
+          }
+      })
+      console.log("Success!")
+      }catch{
+      console.log("Fail!")
+    }
+  }
