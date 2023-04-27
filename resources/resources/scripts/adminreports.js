@@ -5,7 +5,7 @@ const data = []
 function handleOnLoad(){
     CreateFirstReport()
     CreateSecondReport()
-    
+    CreateThirdReport()
 }
 
 function CreateFirstReport(){
@@ -67,9 +67,9 @@ function CreateSecondReport(){
         // Format the data for use with Chart.js
         const labels = [];
         const values = [];
-        data.forEach(function(car) {
-            labels.push(car.make);
-            values.push(car.count);
+        data.forEach(function(CarCombinations) {
+            labels.push(CarCombinations.bothCarMakes);
+            values.push(CarCombinations.totalSame);
         });
   
     const ctx = document.getElementById('secondChart').getContext('2d');
@@ -78,7 +78,7 @@ function CreateSecondReport(){
       data: {
         labels: labels,
         datasets: [{
-          label: 'Most Popular Car by Search',
+          label: 'Most Popular Make Comparisons',
           data: values,
           backgroundColor: 'rgba(255, 99, 132, 0.2)',
           borderColor: 'rgba(255, 99, 132, 1)',
@@ -104,4 +104,47 @@ function CreateSecondReport(){
 }
 getData()
 
+}
+
+
+function CreateThirdReport(){
+  const getData = function() {
+    fetch(`${url}AdminReport/UserStateTotals`)
+    .then(function (response){
+        return response.json();
+    })
+    .then(function (data) {
+        // Format the data for use with Chart.js
+        const labels = [];
+        const values = [];
+        data.forEach(function(user) {
+            labels.push(user.state);
+            values.push(user.count);
+        });
+  
+    const ctx = document.getElementById('stateChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: 'Users per State',
+          data: values,
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        autoPadding: true,
+        layout: {
+          padding: 20
+      }
+      }
+    });
+    data.push(myChart)
+  })
+}
+getData()
 }
