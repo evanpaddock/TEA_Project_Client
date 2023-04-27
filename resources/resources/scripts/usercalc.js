@@ -1,3 +1,25 @@
+const url = `https://localhost:7106/api/`
+const data = []
+
+function handleOnLoad()
+{
+  getData()
+  addCar()
+}
+
+const getData = function()
+{
+  fetch(url + "Car")
+    .then(function (response){
+        return response.json()
+    })
+    .then(function (data) {
+        const tableHtml = createTable(data);
+        document.getElementById("carTable").innerHTML = tableHtml;
+    })
+}
+
+
 // Define the options for the make and model select elements
 var makeOptions = {
     Toyota: ["-- Select Model --", "Camry", "Corolla", "RAV4"],
@@ -31,6 +53,12 @@ var makeOptions = {
     var make = document.getElementById("make").value;
     var model = document.getElementById("model").value;
     var year = document.getElementById("year").value;
+
+    // Check if any fields are blank
+    if (!make || !model || !year) {
+      alert("Please fill in all fields.");
+      return;
+    }
   
     // Create a new table row
     var table = document.getElementById("carTable");
@@ -89,6 +117,12 @@ var makeOptions = {
     var make = document.getElementById("make2").value;
     var model = document.getElementById("model2").value;
     var year = document.getElementById("year2").value;
+
+    // Check if any fields are blank
+    if (!make || !model || !year) {
+      alert("Please fill in all fields.");
+      return;
+    }
   
     // Create a new table row
     var table = document.getElementById("carTable2");
