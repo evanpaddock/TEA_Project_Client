@@ -1,0 +1,10 @@
+
+#main-text{
+    height: 40%;
+    width: 95%;
+    color: #000;
+}
+
+body {
+    height: 950px; /* You must set a specified height */
+}

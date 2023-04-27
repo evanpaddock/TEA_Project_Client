@@ -26,7 +26,18 @@ function handleLogin(){
             try{
                 let foundUserName = foundUser.userName;
 
-                alert(`Welcome ${foundUserName}!`)
+                alert("Welcome " + foundUserName + "!")
+                
+                localStorage.setItem("TEASiteUser", JSON.stringify(foundUser));
+
+                await fetch(url + "Role/" + `${foundUser.role_ID}`).then(function(response){
+                    localStorage.setItem("TEASiteUserAbilities", JSON.stringify(response));
+                })
+
+                window.location.replace(
+                    "../../pages/public/index.html"
+                  );
+       
             }catch{
                 alert("A user with that name and password are not found.\n\nPlease try again or register.")
                 document.getElementById("loginUsername").value = "";
@@ -51,39 +62,59 @@ function handleRegister(){
         const password = document.getElementById("registerPassword").value;
         const confirmpassword = document.getElementById("confirmPassword").value
 
+        const loginInfo = {username, password, userEmail}
+
         if(password != confirmpassword){
             alert("Passwords do not match\n\n Please try again")
 
             document.getElementById("registerPassword").value = "";
             document.getElementById("confirmpassword").value = "";
         }else{
-            try{
-                const joinDate = new Date().toLocaleDateString();
-                await fetch(url + "User", {
-                    // Adding method type
-                    method: "POST",
+            fetch(url + "User").then(function(response){
+                return response.json();
+            }).then(async function(data){
+                const foundUser = data.find(
+                    (data) => data.userName === loginInfo.username &&
+                    data.password === loginInfo.password || data.userEmail == userEmail
+                )
+                try{
+                    let foundUserName = foundUser.userName;
+
+                    alert("An account with that information has already been created. Please try again or login.")
+
+                    document.getElementById("registerUsername").value = "";
+                    document.getElementById("registerPassword").value = "";
+                    document.getElementById("confirmPassword").value = "";
+
                     
-                    // Adding body or contents to send
-                    body: JSON.stringify({
-                        userName: username,
-                        password: password,
-                        userEmail: userEmail,
-                        firstName: firstName,
-                        lastName: lastName,
-                        dateJoined: joinDate,
-                        state: userState,
-                        role_ID: 2
-                    }),
-                
-                    // Adding headers to the request
-                    headers: {
-                        "Content-type": "application/json; charset=UTF-8"
-                    }
-                })
-                console.log("Success!")
-            }catch{
-                console.log("Fail!")
-            }
+                }catch{
+                    const joinDate = new Date().toLocaleDateString();
+                    await fetch(url + "User", {
+                        // Adding method type
+                        method: "POST",
+                        
+                        // Adding body or contents to send
+                        body: JSON.stringify({
+                            userName: username,
+                            password: password,
+                            userEmail: userEmail,
+                            firstName: firstName,
+                            lastName: lastName,
+                            dateJoined: joinDate,
+                            state: userState,
+                            role_ID: 2
+                        }),
+                    
+                        // Adding headers to the request
+                        headers: {
+                            "Content-type": "application/json; charset=UTF-8"
+                        }
+                    })
+    
+                    alert("Account successfully created. Please Login!")
+                }
+            })
+
         }
     })
 }
