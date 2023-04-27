@@ -2,12 +2,12 @@
 #main-text{
     height: 40%;
     width: 95%;
-    color: aliceblue;
+    color: white;
     text-align: center;
 }
 
 body {
-    background-image: url("../images/TEA_Background_3.jpg");
+    background-image: url("../images/TEA_Background_2.png");
     background-repeat: repeat-none;
     height: 950px; /* You must set a specified height */
     background-position: center; /* Center the image */
