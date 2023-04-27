@@ -45,15 +45,23 @@
       <div class="chart-container">
         <h4>Most Popular Car By Search</h4>
         <canvas id="firstChart"></canvas>
+        <button onClick="ExportChart1()" class="btn btn-lg btn-dark" type="submit">Download Report</button>
       </div>
       <!-- <h4>Second Chart</h4> -->
       <div class="chart-container">
         <h4>Most Popular Comparisons By Make</h4>
         <canvas id="secondChart"></canvas>
+        <button onClick="ExportChart2()" class="btn btn-lg btn-dark" type="submit">Download Report</button>
       </div>
       <div class="chart-container">
-        <h4>Registered Users Per State</h4>
+        <h4>Download Reported Users Per State</h4>
         <canvas id="stateChart"></canvas>
+        <button onClick="ExportChart3()" class="btn btn-lg btn-dark" type="submit">Download Report</button>
+      </div>
+      <div class="chart-container">
+        <h4># of Users Joined/Day in last 2 weeks</h4>
+        <canvas id="dateJoinedChart"></canvas>
+        <button onClick="ExportChart4()" class="btn btn-lg btn-dark" type="submit">Download Report</button>
       </div>
     </div>
 
