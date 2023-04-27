@@ -1,7 +1,51 @@
-body {
-    height: 950px; /* You must set a specified height */
-}
+
 #main-text{
     height: 40%;
     width: 95%;
+    color: aliceblue;
+    text-align: center;
 }
+
+body {
+    background-image: url("../images/TEA_Background_3.jpg");
+    background-repeat: repeat-none;
+    height: 950px; /* You must set a specified height */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+   
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
+.jumbotron {
+    color: #fff;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+
+}
+
+.jumbotron h3 {
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+}
+
+footer {
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+}
+
