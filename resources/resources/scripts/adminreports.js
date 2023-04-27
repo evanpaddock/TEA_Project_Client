@@ -203,7 +203,43 @@ function ExportChart1(){
     const downloadLink = document.createElement('a')
     downloadLink.href = canvas.toDataURL('image/png');
     // chartImage now contains the chart as a PNG image
-    downloadLink.download = 'firstChart.png'
+    downloadLink.download = 'secondChart.png'
+    downloadLink.click()
+});
+}
+
+function ExportChart2(){
+  const chartCanvas = document.getElementById('secondChart');
+
+  html2canvas(chartCanvas).then(canvas => {
+    const downloadLink = document.createElement('a')
+    downloadLink.href = canvas.toDataURL('image/png');
+    // chartImage now contains the chart as a PNG image
+    downloadLink.download = 'secondChart.png'
+    downloadLink.click()
+});
+}
+
+function ExportChart3(){
+  const chartCanvas = document.getElementById('stateChart');
+
+  html2canvas(chartCanvas).then(canvas => {
+    const downloadLink = document.createElement('a')
+    downloadLink.href = canvas.toDataURL('image/png');
+    // chartImage now contains the chart as a PNG image
+    downloadLink.download = 'stateChart.png'
+    downloadLink.click()
+});
+}
+
+function ExportChart4(){
+  const chartCanvas = document.getElementById('dateJoinedChart');
+
+  html2canvas(chartCanvas).then(canvas => {
+    const downloadLink = document.createElement('a')
+    downloadLink.href = canvas.toDataURL('image/png');
+    // chartImage now contains the chart as a PNG image
+    downloadLink.download = 'dateJoinedChart.png'
     downloadLink.click()
 });
 }
