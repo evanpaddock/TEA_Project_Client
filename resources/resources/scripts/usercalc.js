@@ -184,9 +184,9 @@ var makeOptions = {
   };
   
   // Call the saveFormData() function when the user submits the form to save the data to local storage
-  document.getElementById("myForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-    saveFormData();
-    this.submit();
-  });
+  // document.getElementById("myForm").addEventListener("submit", function(event) {
+  //   event.preventDefault();
+  //   saveFormData();
+  //   this.submit();
+  // });
   

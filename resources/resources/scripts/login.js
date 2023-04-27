@@ -31,16 +31,20 @@ function handleLogin(){
                 localStorage.setItem("TEASiteUser", JSON.stringify(foundUser));
 
                 await fetch(url + "Role/" + `${foundUser.role_ID}`).then(function(response){
-                    localStorage.setItem("TEASiteUserAbilities", JSON.stringify(response));
+                    return response.json();
+                }).then(function(data){
+                    localStorage.setItem("TEASiteUserAbilities", JSON.stringify(data));
+                }).then(function(){
+                    window.location.replace(
+                        "./index.html"
+                      );
                 })
 
-                window.location.replace(
-                    "../../pages/public/index.html"
-                  );
+                
        
             }catch{
                 alert("A user with that name and password are not found.\n\nPlease try again or register.")
-                document.getElementById("loginUsername").value = "";
+                document.getElementById("loginUserName").value = "";
                 document.getElementById("loginPassword").value = "";
             }
         })
@@ -68,7 +72,7 @@ function handleRegister(){
             alert("Passwords do not match\n\n Please try again")
 
             document.getElementById("registerPassword").value = "";
-            document.getElementById("confirmpassword").value = "";
+            document.getElementById("confirmPassword").value = "";
         }else{
             fetch(url + "User").then(function(response){
                 return response.json();
