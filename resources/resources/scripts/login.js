@@ -83,8 +83,12 @@ function handleRegister(){
                     alert("An account with that information has already been created. Please try again or login.")
 
                     document.getElementById("registerUsername").value = "";
+                    document.getElementById("registerEmail").value = "";
                     document.getElementById("registerPassword").value = "";
                     document.getElementById("confirmPassword").value = "";
+                    document.getElementById("registerFirstName").value = "";
+                    document.getElementById("registerLastName").value = "";
+                    document.getElementById("registerState").value = "";
 
                     
                 }catch{
@@ -112,6 +116,14 @@ function handleRegister(){
                     })
     
                     alert("Account successfully created. Please Login!")
+
+                    document.getElementById("registerUsername").value = "";
+                    document.getElementById("registerEmail").value = "";
+                    document.getElementById("registerPassword").value = "";
+                    document.getElementById("confirmPassword").value = "";
+                    document.getElementById("registerFirstName").value = "";
+                    document.getElementById("registerLastName").value = "";
+                    document.getElementById("registerState").value = "";
                 }
             })
 
