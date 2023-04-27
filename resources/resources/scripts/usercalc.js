@@ -93,13 +93,14 @@ var makeOptions = {
   function populateModels2()
   {
     // Get the selected make and model elements
-    var makeSelect = document.getElementById("make");
-    var modelSelect = document.getElementById("model");
+    var makeSelect = document.getElementById("make2");
+    var modelSelect = document.getElementById("model2");
   
     // Clear the previous options from the model select element
     modelSelect.innerHTML = "";
   
     // Get the models for the selected make from the makeOptions object
+    var models = makeOptions2[makeSelect.value];
     var models = makeOptions2[makeSelect.value];
   
     // Add the new model options to the model select element
