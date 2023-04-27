@@ -6,6 +6,7 @@ function handleOnLoad(){
     CreateFirstReport()
     CreateSecondReport()
     CreateThirdReport()
+    CreateFourthReport()
 }
 
 function CreateFirstReport(){
@@ -119,12 +120,12 @@ function CreateThirdReport(){
         const values = [];
         data.forEach(function(user) {
             labels.push(user.state);
-            values.push(user.count);
+            values.push(user.totalCount);
         });
   
     const ctx = document.getElementById('stateChart').getContext('2d');
     const myChart = new Chart(ctx, {
-      type: 'pie',
+      type: 'bar',
       data: {
         labels: labels,
         datasets: [{
@@ -147,4 +148,98 @@ function CreateThirdReport(){
   })
 }
 getData()
+}
+
+function CreateFourthReport(){
+  const getData = function() {
+    fetch(`${url}AdminReport/DateJoinedTotals`)
+    .then(function (response){
+        return response.json();
+    })
+    .then(function (data) {
+        // Format the data for use with Chart.js
+        const labels = [];
+        const values = [];
+        data.forEach(function(user) {
+            labels.push(user.dateJoined);
+            values.push(user.total);
+        });
+  
+    const ctx = document.getElementById('dateJoinedChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: [{
+          label: '# of Users joined per day',
+          data: values,
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: 'rgba(255, 99, 132, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        autoPadding: true,
+        layout: {
+          padding: 20
+      }
+      }
+    });
+    data.push(myChart)
+  })
+}
+getData()
+}
+
+
+
+//Chart Export Functions
+
+function ExportChart1(){
+  const chartCanvas = document.getElementById('firstChart');
+
+  html2canvas(chartCanvas).then(canvas => {
+    const downloadLink = document.createElement('a')
+    downloadLink.href = canvas.toDataURL('image/png');
+    // chartImage now contains the chart as a PNG image
+    downloadLink.download = 'secondChart.png'
+    downloadLink.click()
+});
+}
+
+function ExportChart2(){
+  const chartCanvas = document.getElementById('secondChart');
+
+  html2canvas(chartCanvas).then(canvas => {
+    const downloadLink = document.createElement('a')
+    downloadLink.href = canvas.toDataURL('image/png');
+    // chartImage now contains the chart as a PNG image
+    downloadLink.download = 'secondChart.png'
+    downloadLink.click()
+});
+}
+
+function ExportChart3(){
+  const chartCanvas = document.getElementById('stateChart');
+
+  html2canvas(chartCanvas).then(canvas => {
+    const downloadLink = document.createElement('a')
+    downloadLink.href = canvas.toDataURL('image/png');
+    // chartImage now contains the chart as a PNG image
+    downloadLink.download = 'stateChart.png'
+    downloadLink.click()
+});
+}
+
+function ExportChart4(){
+  const chartCanvas = document.getElementById('dateJoinedChart');
+
+  html2canvas(chartCanvas).then(canvas => {
+    const downloadLink = document.createElement('a')
+    downloadLink.href = canvas.toDataURL('image/png');
+    // chartImage now contains the chart as a PNG image
+    downloadLink.download = 'dateJoinedChart.png'
+    downloadLink.click()
+});
 }
