@@ -6,6 +6,8 @@ const data = []
 function handleOnLoad(){
     getData()
     addCar()
+    createRoleTable();
+
 }
 
 const getData = function() {
@@ -70,7 +72,7 @@ addCarBtn.addEventListener("click", async function(e) {
 });
 }
 
-  function createTable(data){
+function createTable(data){
     let tableHtml = `
         <table class="table table-hover">
         <thead>
@@ -95,7 +97,7 @@ addCarBtn.addEventListener("click", async function(e) {
       console.log(car)
         if(car.deleted != true){
           console.log("inside if")
-        tableHtml += `<tr class="table-dark">
+        tableHtml += `<tr class="table-secondary">
         <td>${car.make}</td>
         <td>${car.model}</td>
         <td>${car.year}</td>
@@ -170,7 +172,30 @@ addCarBtn.addEventListener("click", async function(e) {
 
   async function handleDelete(carID){
     console.log("inside delete")
-      
+    fetch(`${url}Car`)
+    .then(response => response.json())
+    .then(cars =>{
+
+const car = cars.find(car => car.carID === carID)
+updateDelete(car)    
+
+})
+  }
+
+  async function updateDelete(car){
+    console.log(car)
+    const carID = car.carID
+    const make = car.make
+    const model = car.model
+    const year = car.year
+    const trim = car.trim
+    const gas_Mileage = car.gas_Mileage
+    const tank_Size = car.tank_Size
+    const fuel_Type = car.fuel_Type
+    const horsePower = car.horsePower
+    const torque = car.torque
+    const transmission = car.transmission
+    const timesViewed = car.timesViewed
       const deleted = true
       try{
         alert("This car is now deleted")
@@ -181,7 +206,18 @@ addCarBtn.addEventListener("click", async function(e) {
           // Adding body or contents to send
           body: JSON.stringify({
               
-            carID: carID,  
+            carID: carID,
+            make : make,
+            model: model,
+            year: year,
+            trim: trim,
+            gas_Mileage: gas_Mileage,
+            tank_Size: tank_Size,
+            fuel_type: fuel_Type,
+            horsePower: horsePower,
+            torque: torque,
+            transmission: transmission, 
+            timesViewed : timesViewed,
             deleted: deleted
           }),
       
@@ -194,4 +230,44 @@ addCarBtn.addEventListener("click", async function(e) {
       }catch{
       console.log("Fail!")
     }
+  }
+
+async function createRoleTable(){
+  let tableHtml = `
+        <table class="table table-hover carTable">
+        <thead>
+            <tr>
+            <th scope="col">Role Name</th>
+            <th scope="col">Edit_Page_TF</th>
+            <th scope="col">Reports_Able_TF</th>
+            <th scope="col">Admin_Page_TF</th>
+            <th scope="col">User_Page_TF</th>
+            </tr>
+        </thead>
+        <tbody>
+    `;
+  await fetch(url + "Role")
+    .then(function (response){
+        return response.json()
+    }).then(function(data){
+      data.forEach((role) => {
+          tableHtml += `<tr class="table-secondary">
+          <td>${role.roleName}</td>
+          <td>${role.edit_Page_TF}</td>
+          <td>${role.reports_Able_TF}</td>
+          <td>${role.admin_Page_TF}</td>
+          <td>${role.user_Page_TF}</td>
+        </tr>
+      `; 
+      });
+      
+      tableHtml += `
+              </tbody>
+          </table>
+          `;
+      document.getElementById("role-container").innerHTML = tableHtml;
+    })
+
+    
+    
   }

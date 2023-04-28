@@ -1,0 +1,17 @@
+.welcome{
+    text-align: center;
+    padding-top: 20px;
+  }
+
+.d-flex{
+    padding-left: 40px;
+}
+
+.carTable{
+    border-radius: 20px !important;
+    border-width: 3px !important;
+    border-style: solid !important;
+    width: 90%;
+    margin: 0px auto;
+    float: none;
+}

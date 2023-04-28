@@ -32,8 +32,8 @@ function CreateFirstReport(){
         datasets: [{
           label: 'Most Popular Car by Search',
           data: values,
-          backgroundColor: 'rgba(255, 99, 132, 0.2)',
-          borderColor: 'rgba(255, 99, 132, 1)',
+          backgroundColor: 'rgba(50, 93, 136, 0.55)',
+          borderColor: 'rgba(50, 93, 136, 0.55)',
           borderWidth: 1
         }]
       },
@@ -60,7 +60,7 @@ getData()
 
 function CreateSecondReport(){
   const getData = function() {
-    fetch(`${url}AdminReport/CarCombinations`)
+    fetch(`${url}AdminReport/FuelTypeAndTotal`)
     .then(function (response){
         return response.json();
     })
@@ -69,7 +69,7 @@ function CreateSecondReport(){
         const labels = [];
         const values = [];
         data.forEach(function(CarCombinations) {
-            labels.push(CarCombinations.bothCarMakes);
+            labels.push(CarCombinations.fuelType);
             values.push(CarCombinations.totalSame);
         });
   
@@ -79,10 +79,10 @@ function CreateSecondReport(){
       data: {
         labels: labels,
         datasets: [{
-          label: 'Most Popular Make Comparisons',
+          label: 'Total Fuel Types for Viewable Cars',
           data: values,
-          backgroundColor: 'rgba(255, 99, 132, 0.2)',
-          borderColor: 'rgba(255, 99, 132, 1)',
+          backgroundColor: 'rgba(50, 93, 136, 0.55)',
+          borderColor: 'rgba(50, 93, 136, 0.55)',
           borderWidth: 1
         }]
       },
@@ -131,8 +131,8 @@ function CreateThirdReport(){
         datasets: [{
           label: 'Users per State',
           data: values,
-          backgroundColor: 'rgba(255, 99, 132, 0.2)',
-          borderColor: 'rgba(255, 99, 132, 1)',
+          backgroundColor: 'rgba(50, 93, 136, 0.55)',
+          borderColor: 'rgba(50, 93, 136, 0.55)',
           borderWidth: 1
         }]
       },
@@ -173,8 +173,8 @@ function CreateFourthReport(){
         datasets: [{
           label: '# of Users joined per day',
           data: values,
-          backgroundColor: 'rgba(255, 99, 132, 0.2)',
-          borderColor: 'rgba(255, 99, 132, 1)',
+          backgroundColor: 'rgba(50, 93, 136, 0.55)',
+          borderColor: 'rgba(50, 93, 136, 0.55)',
           borderWidth: 1
         }]
       },

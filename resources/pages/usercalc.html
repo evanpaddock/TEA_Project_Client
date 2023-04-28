@@ -42,8 +42,11 @@
       <div class="welcome">
         <h1>Car Calculator</h1>
       </div>
+      <div class="instruction">
+        <p1>To compare cars, select the available cars from the drop down and click submit!</p1>
+      </div>
       <!--Drop down menu1 start-->
-      <div style="display:inline-block">
+      <div class="dropdown-container">
         <form>
           <div class="form-group" col-md-6>
             <label for="make">Make:</label>
@@ -66,22 +69,13 @@
             </select>
           </div>
       
-          <button type="button" onclick="addRow()">Submit</button>
+          <button type="button" onclick="addTable()">Submit</button>
         </form>
-        <table id="carTable">
-          <thead>
-            <tr>
-              <th>Make</th>
-              <th>Model</th>
-              <th>Year</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
+        <div id="carTable">
+        </div>
       </div>
       <!--Drop down menu2 start-->
-      <div style="display:inline-block">
+      <div class ="dropdown-container">
         <form>
           <div class="form-group" col-md-6>
             <label for="make2">Make:</label>
@@ -107,17 +101,11 @@
       
           <button type="button" onclick="addRowTable2()">Submit</button>
         </form>
-        <table id="carTable2">
-          <thead>
-            <tr>
-              <th>Make</th>
-              <th>Model</th>
-              <th>Year</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
+        <div id="carTable2">
+        </div>
+      </div>
+      <div>
+
       </div>
       <!-- Footer Bar -->
       <footer class="footer fixed-bottom bg-primary">
@@ -130,6 +118,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <script src="../resources/scripts/userinfo.js"></script>
     <script src="../resources/scripts/usercalc.js"></script>
+    <script src="../resources/scripts/savereports.js"></script>
       
 </body>
 </html>

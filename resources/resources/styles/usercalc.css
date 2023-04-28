@@ -103,6 +103,26 @@ form * {
   margin-bottom: 10px;
 }
 
+.table-format{
+  position: center;
+  width: 200px
+}
+
+.welcome{
+  text-align: center;
+  padding-top: 20px;
+}
+
+.instruction{
+  text-align: center;
+  padding-top: 10 px;
+}
+
+.dropdown-container{
+    width: 50%;
+    float: left;
+    padding: 40px;
+}
   
   
   
