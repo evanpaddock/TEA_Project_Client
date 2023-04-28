@@ -69,7 +69,7 @@ function CreateSecondReport(){
         const labels = [];
         const values = [];
         data.forEach(function(CarCombinations) {
-            labels.push(CarCombinations.fuel_Type);
+            labels.push(CarCombinations.fuelType);
             values.push(CarCombinations.totalSame);
         });
   
@@ -79,7 +79,7 @@ function CreateSecondReport(){
       data: {
         labels: labels,
         datasets: [{
-          label: 'Most Common Fuel Type',
+          label: 'Total Fuel Types for Viewable Cars',
           data: values,
           backgroundColor: 'rgba(50, 93, 136, 0.55)',
           borderColor: 'rgba(50, 93, 136, 0.55)',
