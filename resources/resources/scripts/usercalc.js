@@ -296,7 +296,7 @@ function createTable(car){
       </thead>
       <tbody>
   
-     <tr class="table-dark">
+     <tr class="table-dark" id="${car.carID}">
       <td>${car.trim}</td>
       <td>${car.gas_Mileage}</td>
       <td>${car.tank_Size}</td>

@@ -72,7 +72,7 @@ addCarBtn.addEventListener("click", async function(e) {
 
   function createTable(data){
     let tableHtml = `
-        <table class="table table-hover">
+        <table class="table table-hover rounded">
         <thead>
             <tr>
             <th scope="col">Make</th>
@@ -95,7 +95,7 @@ addCarBtn.addEventListener("click", async function(e) {
       console.log(car)
         if(car.deleted != true){
           console.log("inside if")
-        tableHtml += `<tr class="table-dark">
+        tableHtml += `<tr class="table-secondary">
         <td>${car.make}</td>
         <td>${car.model}</td>
         <td>${car.year}</td>
