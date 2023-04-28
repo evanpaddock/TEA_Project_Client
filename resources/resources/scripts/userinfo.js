@@ -4,6 +4,9 @@ function PopulateLoginPages(){
 
     let loginArea = document.getElementById("loginLinkArea")
 
+    let url = document.URL.slice(87);
+    console.log(url)
+
     try{
         let userRole = user.role_ID;
         loginArea.insertAdjacentHTML("afterbegin", `<li class="nav-item">
@@ -16,20 +19,20 @@ function PopulateLoginPages(){
 
         if(userAbilities.admin_Page_TF){
             loginArea.insertAdjacentHTML("afterbegin", `<li class="nav-item">
-                                                    <a class="nav-link" href="./adminreports.html">Admin Reports</a>
+                                                    <a class="nav-link ${url == "adminreports.html" ? 'active' : ''}" href="./adminreports.html">Admin Reports</a>
                                                     </li>`);
 
             loginArea.insertAdjacentHTML("afterbegin", `<li class="nav-item">
-                                                    <a class="nav-link" href="./admincalc.html">Admin Calculator</a>
+                                                    <a class="nav-link ${url == "admincalc.html" ? 'active' : ''}" href="./admincalc.html">Admin Calculator</a>
                                                     </li>`);
         }
 
         if(userAbilities.reports_Able_TF){
             loginArea.insertAdjacentHTML("afterbegin", `<li class="nav-item">
-                                                    <a class="nav-link" href="./userCalc.html">Car Calculator</a>
+                                                    <a class="nav-link ${url == "userCalc.html" ? 'active' : ''}" href="./userCalc.html">Car Calculator</a>
                                                     </li>`)
         }
-        if(userAbilities.edit_Page_TF){
+        if(userAbilities.edit_Page_TF && url == "geninfo.html"){
             document.getElementById("genInfoButton").innerHTML = `
             <!-- Button trigger edit text modal -->
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editText" id="editTextButton">
