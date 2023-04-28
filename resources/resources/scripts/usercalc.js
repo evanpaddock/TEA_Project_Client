@@ -245,10 +245,19 @@ function clearSelect(selectElement) {
 //   //   retrieveFormData();
 //   // };
   
+<<<<<<< HEAD
 //   // // Call the saveFormData() function when the user submits the form to save the data to local storage
 //   // document.getElementById("myForm").addEventListener("submit", function(event) {
 //   //   event.preventDefault();
 //   //   saveFormData();
 //   //   this.submit();
 //   // });
+=======
+  // Call the saveFormData() function when the user submits the form to save the data to local storage
+  // document.getElementById("myForm").addEventListener("submit", function(event) {
+  //   event.preventDefault();
+  //   saveFormData();
+  //   this.submit();
+  // });
+>>>>>>> cfb46fb6d500e40d15d4dfc9e0cb7996b4347ce4
   
