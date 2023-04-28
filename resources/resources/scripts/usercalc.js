@@ -1,22 +1,6 @@
 const url = `https://localhost:7106/api/`
 const data = []
 
-// function handleOnLoad()
-// {
-//   getData()
-// }
-
-const getData = function()
-{
-  fetch(url + "Car")
-    .then(function (response){
-        return response.json()
-    })
-    .then(function (data) {
-        const tableHtml = createTable(data);
-        document.getElementById("carTable").innerHTML = tableHtml;
-    })
-}
 
 const makeSelect = document.getElementById('make')
 const modelSelect = document.getElementById('model')
@@ -25,21 +9,24 @@ const yearSelect = document.getElementById('year')
 //event listeners
 
 makeSelect.addEventListener('change', onMakeChanged)
-//modelSelect.addEventListener('change', onModelChanged)
+modelSelect.addEventListener('change', onModelChanged)
 
 //populate the make with options
 fetch(`${url}Car`)
   .then(response => response.json())
   .then(cars => {
-    const defaultOption = document.createElement('option')
+    
+    const makes = [...new Set(cars.map(car => car.make))]
+
+      const defaultOption = document.createElement('option')
     defaultOption.value = ''
     defaultOption.text = '-- Select Make --'
     makeSelect.appendChild(defaultOption)
 
-    cars.forEach(car => {
+    makes.forEach(make => {
       const option = document.createElement('option')
-      option.make = car.make
-      option.text = car.make
+      option.make = make
+      option.text = make
       makeSelect.appendChild(option)
     })
   })
@@ -50,10 +37,14 @@ fetch(`${url}Car`)
     clearSelect(yearSelect)
 
     const make = makeSelect.value
+
   
-    fetch(`${url}Car`)
-  .then(response => response.json())
-  .then(models => {
+  fetch(`${url}Car`)
+    .then(response => response.json())
+    .then(cars => {
+    
+    const models = [...new Set(cars.filter(car => car.make === make).map(car => car.model))]
+    
     const defaultOption = document.createElement('option')
     defaultOption.value = ''
     defaultOption.text = '-- Select Model --'
@@ -61,12 +52,40 @@ fetch(`${url}Car`)
 
     models.forEach(model => {
       const option = document.createElement('option')
-      option.value = model.model
-      option.text = model.model
+      option.value = model
+      option.text = model
       modelSelect.appendChild(option)
     })
   })
   //.catch(error = console.error('Error retreiving model values', error))
+}
+
+function onModelChanged(){
+  clearSelect(yearSelect)
+
+  const make = makeSelect.value
+  const model = modelSelect.value
+
+  fetch(`${url}Car`)
+    .then(response => response.json())
+    .then(cars =>{
+
+      const years = [...new Set(cars.filter(car => car.make === make && car.model === model).map(car => car.year))]
+
+      const defaultOption = document.createElement('option')
+      defaultOption.value = ''
+      defaultOption.text = '-- Select Year --'
+      yearSelect.appendChild(defaultOption)
+
+      //adding year options
+      years.forEach(year => {
+        const option = document.createElement('option')
+        option.value = year
+        option.text = year
+        yearSelect.appendChild(option)
+      })
+    })
+    .catch(error => console.error('Error retrieving year values', error))
 }
 
 
@@ -245,19 +264,16 @@ function clearSelect(selectElement) {
 //   //   retrieveFormData();
 //   // };
   
-<<<<<<< HEAD
 //   // // Call the saveFormData() function when the user submits the form to save the data to local storage
 //   // document.getElementById("myForm").addEventListener("submit", function(event) {
 //   //   event.preventDefault();
 //   //   saveFormData();
 //   //   this.submit();
 //   // });
-=======
   // Call the saveFormData() function when the user submits the form to save the data to local storage
   // document.getElementById("myForm").addEventListener("submit", function(event) {
   //   event.preventDefault();
   //   saveFormData();
   //   this.submit();
   // });
->>>>>>> cfb46fb6d500e40d15d4dfc9e0cb7996b4347ce4
   
