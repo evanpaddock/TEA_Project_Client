@@ -6,6 +6,8 @@ const data = []
 function handleOnLoad(){
     getData()
     addCar()
+    createRoleTable();
+
 }
 
 const getData = function() {
@@ -70,7 +72,7 @@ addCarBtn.addEventListener("click", async function(e) {
 });
 }
 
-  function createTable(data){
+function createTable(data){
     let tableHtml = `
         <table class="table table-hover">
         <thead>
@@ -228,4 +230,44 @@ updateDelete(car)
       }catch{
       console.log("Fail!")
     }
+  }
+
+async function createRoleTable(){
+  let tableHtml = `
+        <table class="table table-hover carTable">
+        <thead>
+            <tr>
+            <th scope="col">Role Name</th>
+            <th scope="col">Edit_Page_TF</th>
+            <th scope="col">Reports_Able_TF</th>
+            <th scope="col">Admin_Page_TF</th>
+            <th scope="col">User_Page_TF</th>
+            </tr>
+        </thead>
+        <tbody>
+    `;
+  await fetch(url + "Role")
+    .then(function (response){
+        return response.json()
+    }).then(function(data){
+      data.forEach((role) => {
+          tableHtml += `<tr class="table-secondary">
+          <td>${role.roleName}</td>
+          <td>${role.edit_Page_TF}</td>
+          <td>${role.reports_Able_TF}</td>
+          <td>${role.admin_Page_TF}</td>
+          <td>${role.user_Page_TF}</td>
+        </tr>
+      `; 
+      });
+      
+      tableHtml += `
+              </tbody>
+          </table>
+          `;
+      document.getElementById("role-container").innerHTML = tableHtml;
+    })
+
+    
+    
   }
