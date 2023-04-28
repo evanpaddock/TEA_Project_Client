@@ -8,6 +8,10 @@
 }
 
 .carTable{
-    padding-left: 40px;
-    padding-right: 40px;
+    border-radius: 20px !important;
+    border-width: 3px !important;
+    border-style: solid !important;
+    width: 90%;
+    margin: 0px auto;
+    float: none;
 }
