@@ -79,7 +79,7 @@ function CreateSecondReport(){
       data: {
         labels: labels,
         datasets: [{
-          label: 'Most Popular Make Comparisons',
+          label: 'Most Common Fuel Type',
           data: values,
           backgroundColor: 'rgba(50, 93, 136, 0.55)',
           borderColor: 'rgba(50, 93, 136, 0.55)',
