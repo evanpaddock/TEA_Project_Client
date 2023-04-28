@@ -9,7 +9,6 @@ function PopulateLoginPages(){
 
     try{
         let userRole = user.role_ID;
-        
         loginArea.insertAdjacentHTML("afterbegin", `<li class="nav-item">
                                                     <a class="nav-link" onClick="LogOut()">Log-Out</a>
                                                     </li>`);
@@ -17,8 +16,6 @@ function PopulateLoginPages(){
         loginArea.insertAdjacentHTML("afterbegin", `<li class="nav-item">
                                                     <a class="nav-link active">Welcome ${user.userName}</a>
                                                     </li>`);
-
-        
 
         if(userAbilities.admin_Page_TF){
             loginArea.insertAdjacentHTML("afterbegin", `<li class="nav-item">
@@ -45,5 +42,5 @@ function PopulateLoginPages(){
 
 function LogOut(){
     localStorage.clear();
-    location.reload()
+    location.replace("./index.html")
 }
