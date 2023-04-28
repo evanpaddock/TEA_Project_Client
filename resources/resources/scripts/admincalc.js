@@ -72,7 +72,7 @@ addCarBtn.addEventListener("click", async function(e) {
 
   function createTable(data){
     let tableHtml = `
-        <table class="table table-hover rounded">
+        <table class="table table-hover">
         <thead>
             <tr>
             <th scope="col">Make</th>
