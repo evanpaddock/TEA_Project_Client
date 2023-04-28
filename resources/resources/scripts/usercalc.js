@@ -49,9 +49,9 @@ fetch(`${url}Car`)
     clearSelect(modelSelect)
     clearSelect(yearSelect)
 
-    const make = makeSelect.id
+    const make = makeSelect.value
   
-    fetch(`${url}Car/${make}`)
+    fetch(`${url}Car`)
   .then(response => response.json())
   .then(models => {
     const defaultOption = document.createElement('option')
@@ -145,31 +145,25 @@ function clearSelect(selectElement) {
 //     Ford: ["-- Select Model --", "Fusion", "Escape", "Explorer"]
 //   };
   
-<<<<<<< HEAD
 //   function populateModels2()
 //   {
 //     // Get the selected make and model elements
 //     var makeSelect = document.getElementById("make");
 //     var modelSelect = document.getElementById("model");
-=======
-  function populateModels2()
-  {
-    // Get the selected make and model elements
-    var makeSelect = document.getElementById("make2");
-    var modelSelect = document.getElementById("model2");
->>>>>>> d4ec928a80e198bacfd774a610f1f7f0147760f6
+  // function populateModels2()
+  // {
+  //   // Get the selected make and model elements
+  //   var makeSelect = document.getElementById("make2");
+  //   var modelSelect = document.getElementById("model2");
   
 //     // Clear the previous options from the model select element
 //     modelSelect.innerHTML = "";
   
-<<<<<<< HEAD
 //     // Get the models for the selected make from the makeOptions object
 //     var models = makeOptions2[makeSelect.value];
-=======
     // Get the models for the selected make from the makeOptions object
-    var models = makeOptions2[makeSelect.value];
-    var models = makeOptions2[makeSelect.value];
->>>>>>> d4ec928a80e198bacfd774a610f1f7f0147760f6
+    // var models = makeOptions2[makeSelect.value];
+    // var models = makeOptions2[makeSelect.value];
   
 //     // Add the new model options to the model select element
 //     for (var j = 0; j < models.length; j++) {
