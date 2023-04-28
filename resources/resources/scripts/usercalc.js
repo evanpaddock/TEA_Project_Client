@@ -87,6 +87,94 @@ function onModelChanged(){
     })
     .catch(error => console.error('Error retrieving year values', error))
 }
+//------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+const makeSelect2 = document.getElementById('make2')
+const modelSelect2 = document.getElementById('model2')
+const yearSelect2 = document.getElementById('year2')
+
+//event listeners
+
+makeSelect2.addEventListener('change', onMakeChanged)
+modelSelect2.addEventListener('change', onModelChanged)
+
+//populate the make with options
+fetch(`${url}Car`)
+  .then(response => response.json())
+  .then(cars => {
+    
+    const makes = [...new Set(cars.map(car => car.make))]
+
+      const defaultOption = document.createElement('option')
+    defaultOption.value = ''
+    defaultOption.text = '-- Select Make --'
+    makeSelect2.appendChild(defaultOption)
+
+    makes.forEach(make => {
+      const option = document.createElement('option')
+      option.make = make
+      option.text = make
+      makeSelect2.appendChild(option)
+    })
+  })
+  .catch(error => console.error('Error retrieving make values', error))
+
+  function onMakeChanged(){
+    clearSelect(modelSelect2)
+    clearSelect(yearSelect2)
+
+    const make = makeSelect2.value
+
+  
+  fetch(`${url}Car`)
+    .then(response => response.json())
+    .then(cars => {
+    
+    const models = [...new Set(cars.filter(car => car.make === make).map(car => car.model))]
+    
+    const defaultOption = document.createElement('option')
+    defaultOption.value = ''
+    defaultOption.text = '-- Select Model --'
+    modelSelect2.appendChild(defaultOption)
+
+    models.forEach(model => {
+      const option = document.createElement('option')
+      option.value = model
+      option.text = model
+      modelSelect2.appendChild(option)
+    })
+  })
+  //.catch(error = console.error('Error retreiving model values', error))
+}
+
+function onModelChanged(){
+  clearSelect(yearSelect2)
+
+  const make = makeSelect2.value
+  const model = modelSelect2.value
+
+  fetch(`${url}Car`)
+    .then(response => response.json())
+    .then(cars =>{
+
+      const years = [...new Set(cars.filter(car => car.make === make && car.model === model).map(car => car.year))]
+
+      const defaultOption = document.createElement('option')
+      defaultOption.value = ''
+      defaultOption.text = '-- Select Year --'
+      yearSelect2.appendChild(defaultOption)
+
+      //adding year options
+      years.forEach(year => {
+        const option = document.createElement('option')
+        option.value = year
+        option.text = year
+        yearSelect2.appendChild(option)
+      })
+    })
+    .catch(error => console.error('Error retrieving year values', error))
+}
 
 
 function clearSelect(selectElement) {
