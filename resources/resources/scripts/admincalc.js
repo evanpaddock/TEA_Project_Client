@@ -170,7 +170,30 @@ addCarBtn.addEventListener("click", async function(e) {
 
   async function handleDelete(carID){
     console.log("inside delete")
-      
+    fetch(`${url}Car`)
+    .then(response => response.json())
+    .then(cars =>{
+
+const car = cars.find(car => car.carID === carID)
+updateDelete(car)    
+
+})
+  }
+
+  async function updateDelete(car){
+    console.log(car)
+    const carID = car.carID
+    const make = car.make
+    const model = car.model
+    const year = car.year
+    const trim = car.trim
+    const gas_Mileage = car.gas_Mileage
+    const tank_Size = car.tank_Size
+    const fuel_Type = car.fuel_Type
+    const horsePower = car.horsePower
+    const torque = car.torque
+    const transmission = car.transmission
+    const timesViewed = car.timesViewed
       const deleted = true
       try{
         alert("This car is now deleted")
@@ -181,7 +204,18 @@ addCarBtn.addEventListener("click", async function(e) {
           // Adding body or contents to send
           body: JSON.stringify({
               
-            carID: carID,  
+            carID: carID,
+            make : make,
+            model: model,
+            year: year,
+            trim: trim,
+            gas_Mileage: gas_Mileage,
+            tank_Size: tank_Size,
+            fuel_type: fuel_Type,
+            horsePower: horsePower,
+            torque: torque,
+            transmission: transmission, 
+            timesViewed : timesViewed,
             deleted: deleted
           }),
       

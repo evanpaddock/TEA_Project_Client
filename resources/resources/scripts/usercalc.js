@@ -91,7 +91,9 @@ function onModelChanged(){
       })
     })
     .catch(error => console.error('Error retrieving year values', error))
-}
+
+  }
+
 }
 //------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -185,10 +187,12 @@ function onModelChanged(){
 
 }
 
-function addRow(){
+function addTable(){
   const make = document.getElementById('make').value
   const model = document.getElementById('model').value
   const year = document.getElementById('year').value
+
+  console.log(make)
   
   fetch(`${url}Car`)
       .then(response => response.json())
@@ -196,51 +200,11 @@ function addRow(){
   
   const car = cars.find(car => car.make === make && car.model === model && car.year === year)
   console.log(car)
-  
-  console.log(car.carID)
-  let tableHtml = `
-  <table class="table table-hover">
-  <thead>
-      <tr>
-      <th scope="col">Make</th>
-      <th scope="col">Model</th>
-      <th scope="col">Year</th>
-      <th scope="col">Trim</th>
-      <th scope="col">Gas Mileage</th>
-      <th scope="col">Tank Size</th>
-      <th scope="col">Fuel Type</th>
-      <th scope="col">Horse Power</th>
-      <th scope="col">Torque</th>
-      <th scope="col">Transmission</th>
-      <th scope="col"></th>
-      <th scope="col"></th>
-      </tr>
-  </thead>
-  <tbody>
-`;
-    tableHtml += `<tr class="table-dark">
-        
-        <td>${car.trim}</td>
-        <td>${car.gas_Mileage}</td>
-        <td>${car.tank_Size}</td>
-        <td>${car.fuel_Type}</td>
-        <td>${car.horsePower}</td>
-        <td>${car.torque}</td>
-        <td>${car.transmission}</td>
-        
-
-      </tr>
-      `;
-      tableHtml += `
-      </tbody>
-  </table>
-  `;
-return tableHtml;
+  const tableHtml = createTable(car);
+        document.getElementById("carTable").innerHTML = tableHtml;
+        updateCount(car)
 
     })
-    
-  
-  
   }
 
 function addRowTable2(){
@@ -254,20 +218,66 @@ function addRowTable2(){
   
   const car = cars.find(car => car.make === make && car.model === model && car.year === year)
   console.log(car)
+      const tableHtml = createTable(car);
+      document.getElementById("carTable2").innerHTML = tableHtml;
+  updateCount(car)  
   
-  console.log(car.carID)
-  const tableHtml = createTable(car);
-        document.getElementById("carTable2").innerHTML = tableHtml;
+  })
+}
 
-    })
-  }
+async function updateCount(car){
+      const carID = car.carID
+      const make = car.make
+      const model = car.model
+      const year = car.year
+      const trim = car.trim
+      const gas_Mileage = car.gas_Mileage
+      const tank_Size = car.tank_Size
+      const fuel_Type = car.fuel_Type
+      const horsePower = car.horsePower
+      const torque = car.torque
+      const transmission = car.transmission
+      const timesViewed = car.timesViewed + 1
+      console.log(timesViewed)
+      try{
+        await fetch(`${url}Car`, {
+          // Adding method type
+          method: "PUT",
+          
+          // Adding body or contents to send
+          body: JSON.stringify({
+              carID: carID,
+              make : make,
+              model: model,
+              year: year,
+              trim: trim,
+              gas_Mileage: gas_Mileage,
+              tank_Size: tank_Size,
+              fuel_type: fuel_Type,
+              horsePower: horsePower,
+              torque: torque,
+              transmission: transmission, 
+              timesViewed : timesViewed
+          }),
+      
+          // Adding headers to the request
+          headers: {
+              "Content-type": "application/json; charset=UTF-8"
+          }
+      })
+      console.log("Success!")
+      }catch{
+      console.log("Fail!")
+    }
+
+    }
+
 
 
 function clearSelect(selectElement) {
   while(selectElement.options.length > 0 ) {
     selectElement.remove(0);
-  }
-}
+  }}
 
 
 function createTable(car){
@@ -302,25 +312,6 @@ function createTable(car){
       </table>
       `;
   return tableHtml;
-}
-
-
-function addTable(){
-  const make = document.getElementById('make').value
-  const model = document.getElementById('model').value
-  const year = document.getElementById('year').value
-  
-  fetch(`${url}Car`)
-      .then(response => response.json())
-      .then(cars =>{
-  
-  const car = cars.find(car => car.make === make && car.model === model && car.year === year)
-  const tableHtml = createTable(car);
-        document.getElementById("carTable").innerHTML = tableHtml;
-
-    })
-
-
 }
 
 
