@@ -254,20 +254,65 @@ function addRowTable2(){
   
   const car = cars.find(car => car.make === make && car.model === model && car.year === year)
   console.log(car)
+      const tableHtml = createTable(car);
+      document.getElementById("carTable2").innerHTML = tableHtml;
+  updateCount(car)  
   
-  console.log(car.carID)
-  const tableHtml = createTable(car);
-        document.getElementById("carTable2").innerHTML = tableHtml;
-
-    })
   }
+      )}
+
+async function updateCount(car){
+      const carID = car.carID
+      const make = car.make
+      const model = car.model
+      const year = car.year
+      const trim = car.trim
+      const gas_Mileage = car.gas_Mileage
+      const tank_Size = car.tank_Size
+      const fuel_Type = car.fuel
+      const horsePower = car.horsePower
+      const torque = car.torque
+      const transmission = car.transmission
+      const timesViewed = car.timesViewed + 1
+      console.log(timesViewed)
+      try{
+        await fetch(`${url}Car`, {
+          // Adding method type
+          method: "PUT",
+          
+          // Adding body or contents to send
+          body: JSON.stringify({
+              carID: carID,
+              make : make,
+              model: model,
+              year: year,
+              trim: trim,
+              gas_Mileage: gas_Mileage,
+              tank_Size: tank_Size,
+              fuel_type: fuel_Type,
+              horsePower: horsePower,
+              torque: torque,
+              transmission: transmission, 
+              timesViewed : timesViewed
+          }),
+      
+          // Adding headers to the request
+          headers: {
+              "Content-type": "application/json; charset=UTF-8"
+          }
+      })
+      console.log("Success!")
+      }catch{
+      console.log("Fail!")
+    }
+
+    }
 
 
 function clearSelect(selectElement) {
   while(selectElement.options.length > 0 ) {
     selectElement.remove(0);
-  }
-}
+  }}
 
 
 function createTable(car){
