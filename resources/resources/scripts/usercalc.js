@@ -1,7 +1,12 @@
 const url = `https://localhost:7106/api/`
 const data = []
 
+function handleOnLoad(){
+  DropDown1()
+  DropDown2()
+}
 
+function DropDown1(){
 const makeSelect = document.getElementById('make')
 const modelSelect = document.getElementById('model')
 const yearSelect = document.getElementById('year')
@@ -87,9 +92,10 @@ function onModelChanged(){
     })
     .catch(error => console.error('Error retrieving year values', error))
 }
+}
 //------------------------------------------------------------------------------------------------------------------------------------------------
 
-
+function DropDown2(){
 const makeSelect2 = document.getElementById('make2')
 const modelSelect2 = document.getElementById('model2')
 const yearSelect2 = document.getElementById('year2')
@@ -175,7 +181,7 @@ function onModelChanged(){
     })
     .catch(error => console.error('Error retrieving year values', error))
 }
-
+}
 
 function clearSelect(selectElement) {
   while(selectElement.options.length > 0 ) {
