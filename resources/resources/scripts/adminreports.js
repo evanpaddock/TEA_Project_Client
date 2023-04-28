@@ -60,7 +60,7 @@ getData()
 
 function CreateSecondReport(){
   const getData = function() {
-    fetch(`${url}AdminReport/CarCombinations`)
+    fetch(`${url}AdminReport/FuelTypeAndTotal`)
     .then(function (response){
         return response.json();
     })
@@ -69,7 +69,7 @@ function CreateSecondReport(){
         const labels = [];
         const values = [];
         data.forEach(function(CarCombinations) {
-            labels.push(CarCombinations.bothCarMakes);
+            labels.push(CarCombinations.fuel_Type);
             values.push(CarCombinations.totalSame);
         });
   
