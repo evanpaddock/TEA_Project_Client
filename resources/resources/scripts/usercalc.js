@@ -296,7 +296,7 @@ function createTable(car){
       </thead>
       <tbody>
   
-     <tr class="table-dark" id="${car.carID}">
+     <tr class="table-dark">
       <td>${car.trim}</td>
       <td>${car.gas_Mileage}</td>
       <td>${car.tank_Size}</td>
@@ -310,6 +310,12 @@ function createTable(car){
    
           </tbody>
       </table>
+      
+      <div class="modal-footer" id="${car.carID}">
+        <button id="saveReport" type="submit" class="btn btn-secondary" onClick="SaveReport(event)">Save Personal Report</button>
+      </div>
+
+
       `;
   return tableHtml;
 }
